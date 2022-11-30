@@ -10,11 +10,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 @Getter
 public class UserDto {
 
-    private final Long id;
-    private final String nickName;
+    private  String pwd;
+    private  String nickName;
 
     public UserDto(Claims claims) {
-        this.id = claims.get("id", Long.class);
+        this.pwd = claims.get("pwd", String.class);
         this.nickName = claims.get("nickName", String.class);
     }
 

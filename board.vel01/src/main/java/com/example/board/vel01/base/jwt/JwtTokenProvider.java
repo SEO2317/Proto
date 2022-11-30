@@ -20,6 +20,7 @@ public class JwtTokenProvider {
 
     private final JwtProperties jwtProperties;
 
+    private final static String SECRECTKEY = "KTRKEKTEJTKJETJKERJTKFKWEJRKJWKRJKWJRLWKJRWLKJSFNNFFKFERKR";
     public String makeJwtToken(User user) {
         Date now = new Date();
 
@@ -28,7 +29,7 @@ public class JwtTokenProvider {
                 .setIssuedAt(now)
                 .setExpiration(new Date(now.getTime() + Duration.ofMinutes(30).toMillis()))
                 .claim("id", user.getId())
-                .signWith(SignatureAlgorithm.HS256, jwtProperties.getSecretKey())
+                .signWith(SignatureAlgorithm.HS256, SECRECTKEY)
                 .compact();
     }
 
