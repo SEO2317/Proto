@@ -1,6 +1,7 @@
 package com.example.board.vel01.base.jwt;
 
 import com.example.board.vel01.domain.User;
+import com.example.board.vel01.model.UserDto;
 import io.jsonwebtoken.ExpiredJwtException;
 import java.io.IOException;
 import javax.servlet.FilterChain;
@@ -37,7 +38,7 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
         String authorizationHeader = request.getHeader(HttpHeaders.AUTHORIZATION);
 
         try {
-            User user = jwtTokenProvider.getUserDtoOf(authorizationHeader);
+            UserDto user = jwtTokenProvider.getUserDtoOf(authorizationHeader);
             SecurityContextHolder.getContext().setAuthentication(new UsernamePasswordAuthenticationToken(
                     user,
                     "",

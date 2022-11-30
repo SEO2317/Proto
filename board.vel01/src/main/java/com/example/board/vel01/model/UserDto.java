@@ -11,9 +11,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 public class UserDto {
 
     private final Long id;
+    private final String nickName;
 
     public UserDto(Claims claims) {
         this.id = claims.get("id", Long.class);
+        this.nickName = claims.get("nickName", String.class);
     }
 
     public Collection<? extends GrantedAuthority> getAuthorities() {

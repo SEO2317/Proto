@@ -4,8 +4,8 @@ package com.example.board.vel01.base.jwt;
 import java.time.Duration;
 import java.util.Date;
 
-
 import com.example.board.vel01.domain.User;
+import com.example.board.vel01.model.UserDto;
 import io.jsonwebtoken.Claims;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
@@ -32,13 +32,13 @@ public class JwtTokenProvider {
                 .compact();
     }
 
-    public User getUserDtoOf(String authorizationHeader) {
+    public UserDto getUserDtoOf(String authorizationHeader) {
         validationAuthorizationHeader(authorizationHeader);
 
         String token = extractToken(authorizationHeader);
         Claims claims = parsingToken(token);
 
-        return new User(claims);
+        return new UserDto(claims);
     }
 
     private Claims parsingToken(String token) {

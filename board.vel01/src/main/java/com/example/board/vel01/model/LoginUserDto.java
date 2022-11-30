@@ -7,11 +7,12 @@ import lombok.Setter;
 @Getter
 public class LoginUserDto {
 
-    private Long id;
-    private String password;
+    private String nickName;
+    private String pwd;
 
-    public LoginUserDto(Long id, String password) {
-        this.id = id;
-        this.password = password;
+    public LoginUserDto(String nickName, String pwd) {
+        this.nickName = nickName;
+        this.pwd = pwd;
     }
+
 }
