@@ -11,7 +11,6 @@ import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import lombok.RequiredArgsConstructor;
 
-import org.springframework.security.web.header.Header;
 import org.springframework.stereotype.Component;
 
 @RequiredArgsConstructor
@@ -20,8 +19,9 @@ public class JwtTokenProvider {
 
     private final JwtProperties jwtProperties;
 
-    private final static String SECRECTKEY = "KTRKEKTEJTKJETJKERJTKFKWEJRKJWKRJKWJRLWKJRWLKJSFNNFFKFERKR";
-    public String makeJwtToken(User user) {
+    private final static String SECRECTKEY = "KTRKEKTEJTKJETJKERJTKFKJSFNNFFKFERKR";
+
+    public String makeJwtToken(User.Request user) {
         Date now = new Date();
 
         return Jwts.builder()
@@ -32,6 +32,8 @@ public class JwtTokenProvider {
                 .signWith(SignatureAlgorithm.HS256, SECRECTKEY)
                 .compact();
     }
+
+
 
     public UserDto getUserDtoOf(String authorizationHeader) {
         validationAuthorizationHeader(authorizationHeader);
@@ -48,6 +50,8 @@ public class JwtTokenProvider {
                 .parseClaimsJws(token)
                 .getBody();
     }
+
+
 
     private void validationAuthorizationHeader(String header) {
         if (header == null || !header.startsWith(jwtProperties.getTokenPrefix())) {
